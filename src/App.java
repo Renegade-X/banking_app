@@ -62,7 +62,7 @@ public class App {
                     break;
 
                 case 9:
-                    System.out.println("Have a good day!");
+                    System.out.println("Have a good day, Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid choice. Try again or enter 9 to exit.");

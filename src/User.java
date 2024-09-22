@@ -79,4 +79,45 @@ public class User {
             }
         }
     }
+
+    public static void viewUserDetails(Scanner input) {
+        System.out.println("Enter the username to view details (format: Firstname Lastname): ");
+        String userName = input.nextLine();
+        String[] user_name_array = userName.split("\\s");
+        String user_name = user_name_array[0] + "_" + user_name_array[1];
+
+        String directory = "D:\\BankingApplication\\users";
+        String filePath = directory + "\\" + user_name + ".txt";
+
+        try {
+            User user = userData(user_name);
+            System.out.println("User Details:");
+            System.out.println("Name: " + user.user_name);
+            System.out.println("Account Number: " + String.format("%05d", user.user_acc_number));
+            System.out.println("Contact Number: " + user.user_cont_number);
+            System.out.println("CNIC: " + user.user_cnic);
+            System.out.println("Email: " + user.user_email);
+            System.out.println("Account Balance: " + String.format("%05d", user.user_acc_balance));
+            System.out.println("Account Created on: " + user.dateCreated);
+        } catch (IOException e) {
+            System.out.println("User does not exist or an error occurred while reading the user details.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        String formattedAccNumber = String.format("%05d", user_acc_number); // Format account number with leading zeros
+        String formattedAccBalance = String.format("%05d", user_acc_balance); // Format account balance with leading zeros
+
+        return "User{" +
+                "user_name='" + user_name + '\'' +
+                ", user_password='" + user_password + '\'' +
+                ", user_acc_number=" + formattedAccNumber +
+                ", user_cont_number=" + user_cont_number +
+                ", user_cnic=" + user_cnic +
+                ", user_email='" + user_email + '\'' +
+                ", user_acc_balance=" + formattedAccBalance +
+                ", dateCreated=" + dateCreated +
+                '}';
+    }
 }
